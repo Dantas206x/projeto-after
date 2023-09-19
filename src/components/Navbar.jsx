@@ -62,7 +62,7 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        <div className="max-[768px]:hidden rounded gradientecoral px-5 py-2.5">
+        <div className="max-[768px]:hidden rounded gradientecoral5 px-5 py-2.5">
         <a href="https://www.ingresso.com/">
           <button>Ingressos</button>
         

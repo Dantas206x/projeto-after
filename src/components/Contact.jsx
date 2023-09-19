@@ -64,10 +64,10 @@ const Contact = () => {
   };
 
   return (
-    <div
-      className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden gradientecoral5`}
+    <div id='contatos'
+      className={`container mx-auto px-5 py-10 lg:px-32 lg:pt-24 gradientecoral5 rounded-xl`}
     >
-        <p className='font-black text-white lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2'>Entre em contato 👾</p>
+        <p className='font-black text-white lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2 flex flex-end'>Entre em contato 👾</p>
 
         <form
           ref={formRef}

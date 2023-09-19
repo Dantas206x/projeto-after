@@ -6,8 +6,8 @@ import { Pagination} from 'swiper/modules';
 const News = () => {
   return (
     
-    <div className='container mx-auto gradientecoral2 rounded-xl flex flex-col xl:flex-row items-center md:my-9 p-4 h-[1075px] xl:h-[600px]'>
-      <div className='swiper mySwiper w-12/12 xl:w-5/12 swiper-initialized swiper-horizontal swiper-backface-hidden'>
+    <div  className='container mx-auto gradientecoral2 rounded-xl flex flex-col xl:flex-row items-center md:my-9 p-4 h-[1075px] xl:h-[600px]'>
+      <div  className='swiper mySwiper w-12/12 xl:w-5/12 swiper-initialized swiper-horizontal swiper-backface-hidden'>
     <Swiper
     slidesPerView={1}
     centeredSlides={true}
@@ -19,7 +19,7 @@ const News = () => {
         modules={[Pagination]}
   >
 <SwiperSlide>
-  <div className='swiper-slide hero-event swiper-slide-active'>
+  <div  id='news' className='swiper-slide hero-event swiper-slide-active'>
     <div className='max-w-[320px] md:max-w-[400px] xl:max-w-[450px] max-w-[320px] md:max-w-[400px] xl:max-w-[450px]'>
       <div className='rounded-lg overflow-hidden shadow-lg'>
 
