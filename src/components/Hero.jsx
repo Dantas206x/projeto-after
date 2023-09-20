@@ -1,6 +1,6 @@
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+
 import { herobg } from "../assets" 
-import { Swiper, SwiperSlide } from 'swiper/react';
+
 
 
 import 'swiper/css';
@@ -14,6 +14,7 @@ const Hero = ({index}) => {
      mx-auto 
      flex 
      h-screen
+     
     ">
     <video src={herobg} autoPlay loop muted/>
         

@@ -2,6 +2,9 @@ import React from 'react'
 
 import emailjs from "@emailjs/browser";
 import { useRef, useState } from "react";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+import { styles } from '../styles';
 
 const Contact = () => {
   const formRef = useRef();
@@ -64,15 +67,19 @@ const Contact = () => {
   };
 
   return (
-    <div id='contatos'
-      className={`container mx-auto px-5 py-10 lg:px-32 lg:pt-24 gradientecoral5 rounded-xl`}
-    >
-        <p className='font-black text-white lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2 flex flex-end'>Entre em contato 👾</p>
+    
+    
+    <div className='container px-5 py-5 lg:px-32 lg:pt-24  rounded-xl pb-20 mx-auto '>
+      <div id='contatos'
+        className={`flex-[0.75] gradientecoral3 p-12 rounded-2xl`}
+      >
+        <p className={styles.sectionHeadText}>Entre em contato 👾</p>
+        <h3 className={styles.sectionSubText}>Deixe sua sugestão.</h3>
 
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className='mt-12 flex flex-col gap-8'
+          className='mt-12 flex flex-col gap-10'
         >
           <label className='flex flex-col'>
             <span className='text-white font-medium mb-4'>Seu nome</span>
@@ -82,7 +89,7 @@ const Contact = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="Digite seu nome."
-              className='gradientecoral2 py-4 px-6  rounded-lg outline-none border-none font-medium'
+              className='gradientecoral4 py-4 px-6  rounded-lg outline-none border-none font-medium'
             />
           </label>
           <label className='flex flex-col'>
@@ -93,7 +100,7 @@ const Contact = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="Digite seu email."
-              className='gradientecoral2 py-4 px-6  rounded-lg outline-none border-none font-medium'
+              className='gradientecoral4 py-4 px-6  rounded-lg outline-none border-none font-medium'
             />
           </label>
           <label className='flex flex-col'>
@@ -104,7 +111,7 @@ const Contact = () => {
               value={form.phone}
               onChange={handleChange}
               placeholder="Digite seu Telefone"
-              className='gradientecoral2 py-4 px-6  rounded-lg outline-none border-none font-medium'
+              className='gradientecoral4 py-4 px-6  rounded-lg outline-none border-none font-medium'
             />
           </label>
           <label className='flex flex-col'>
@@ -115,26 +122,32 @@ const Contact = () => {
               value={form.message}
               onChange={handleChange}
               placeholder='O que gostaria de dizer?'
-              className='gradientecoral2 py-4 px-6  rounded-lg outline-none border-none font-medium'
+              className='gradientecoral4 py-4 px-6  rounded-lg outline-none border-none font-medium'
             />
           </label>
-<div className='gradientecoral2 w-fit rounded-xl'>
-          <button
-            type='submit'
-            className='py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md'
-          >
-            {loading ? "Enviando..." : "Enviar"}
-          </button>
+          <div className='gradientecoral4 w-fit rounded-xl'>
+            <button
+              type='submit'
+              className='py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md'
+            >
+              {loading ? "Enviando..." : "Enviar"}
+            </button>
           </div>
         </form>
+        <div>
+          <div>
+            
+          </div>
+        </div>
+      </div>
     </div>
 
 
 
-     
 
-       
- 
+
+
+
   )
 }
 

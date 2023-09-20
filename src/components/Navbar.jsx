@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { styles } from "../styles";
 import { navLinks } from "../constants";
-import { logo, menu, close } from "../assets";
+import { logo, menu, close, imagen8, imagen9 } from "../assets";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
@@ -25,6 +25,7 @@ const Navbar = () => {
   }, []);
 
   return (
+    
     <nav
       className={`${
         styles.paddingX
@@ -32,6 +33,7 @@ const Navbar = () => {
         scrolled ? "gradientecor" : "gradientecor"
       }`}
     >
+     
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
         <Link
           to='/'
@@ -49,30 +51,36 @@ const Navbar = () => {
         </Link>
         
 
-        <ul className='list-none hidden sm:flex flex-row gap-10'>
+        <ul className='list-none hidden sm:flex flex-row gap-10 '>
           {navLinks.map((nav) => (
             <li
               key={nav.id}
               className={`${
-                active === nav.title ? "text-white" : "text-secondary"
-              } hover:text-white text-[18px] font-medium cursor-pointer`}
+                active === nav.title ? "text-white" : "text-white"
+              } hover:text-stone-400 text-[18px] font-medium cursor-pointer`}
               onClick={() => setActive(nav.title)}
             >
               <a href={`#${nav.id}`}>{nav.title}</a>
             </li>
           ))}
         </ul>
-        <div className="max-[768px]:hidden rounded gradientecoral5 px-5 py-2.5">
-        <a href="https://www.ingresso.com/">
-          <button>Ingressos</button>
-        
-        </a>
-        </div>
+
+        <div className="max-[768px]:hidden flex estilo " >
+        <a href="" target="_blank" className="mx-4">
+        <img src={imagen8} width={20} />
+
+      </a> 
+      <a href="" target="_blank" className="mx-4">
+        <img src={imagen9} width={20} />
+
+      </a> 
+      </div>
         
         <div className='sm:hidden flex flex-1 justify-end items-center'>
           <img
             src={toggle ? close : menu}
             alt='menu'
+            
             className='w-[28px] h-[28px] object-contain'
             onClick={() => setToggle(!toggle)}
           />

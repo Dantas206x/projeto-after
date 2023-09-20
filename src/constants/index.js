@@ -2,7 +2,7 @@
   
   export const navLinks = [
     {
-      id: "news",
+      id: "News",
       title: "Novidades",
     },
   
@@ -18,9 +18,20 @@
       id: "contatos",
       title: "Contato",
     },
+  
     
     
   ];
+  export const navLinkss = [
+    {
+      id: "Carrinho",
+      title: "Carrinho",
+    },
+    {
+      id: "Login",
+      title: "Login",
+    },
+  ]
   
   
   

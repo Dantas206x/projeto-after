@@ -2841,4 +2841,10 @@ body {
   height: 94px;
   resize: none;
 }
+.estilo{
+  fill:white
+}
+.estilo:hover{
+  fill: #a5a2a1;
+}
 
