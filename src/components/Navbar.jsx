@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import Login from "./auth/Login";
+import Register from "./auth/Register";
 import { styles } from "../styles";
 import { navLinks } from "../constants";
 import { logo, menu, close, imagen8, imagen9 } from "../assets";
@@ -66,11 +67,11 @@ const Navbar = () => {
         </ul>
 
         <div className="max-[768px]:hidden flex estilo " >
-        <a href="" target="_blank" className="mx-4">
+        <a href="/Login"  className="mx-4">
         <img src={imagen8} width={20} />
 
       </a> 
-      <a href="" target="_blank" className="mx-4">
+      <a href="/Register" className="mx-4">
         <img src={imagen9} width={20} />
 
       </a> 
