@@ -1,21 +1,21 @@
 const express = require("express");
 const cors = require("cors");
 
-
-const produtos = require("./produtos");
+const products = require("./products");
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-app.get("/", (req, res) =>{
-    res.send("bem vindo ao shop")
-});
-app.get("/produtos", (req, res) =>{
-    res.send(produtos);
+app.get("/", (req, res) => {
+  res.send("oiopioio");
 });
 
-const port = process.env.PORT || 5000
+app.get("/products", (req, res) => {
+  res.send(products);
+});
 
-app.listen(5000, console.log('server está rodando na porta 5000'));
+const port = process.env.PORT || 5000;
+
+app.listen(port, console.log(`Server rodando na porta ${port}`));
