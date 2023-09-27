@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes} from "react-router-dom";
 import { Sobre, Contact, Hero, Navbar, Footer, News, Galeria, } from "./components";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import Shop from "./components/shop";
 
 function App() {
 
@@ -16,6 +17,8 @@ function App() {
              <Routes>
               <Route path="/login" element={<Login/>}/>
               <Route path="/Register" element={<Register/>}/>
+              <Route path="/" element={<Shop/>} />
+       
              </Routes>
             </a>
           </div>

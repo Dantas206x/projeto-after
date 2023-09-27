@@ -6,7 +6,7 @@ import News from './News';
 import Contact from './Contact';
 import Footer from './footer';
 import Galeria from './Galeria';
-
+import Shop from './shop';
 export {
   Hero,
   Navbar,
@@ -15,4 +15,5 @@ export {
   Contact,
   Footer,
   Galeria,
+  Shop,
 }

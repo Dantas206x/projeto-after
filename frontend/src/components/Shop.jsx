@@ -2,11 +2,12 @@ import { useGetAllProductsQuery } from "../features/productsApi";
 
 const Shop = () => {
     const { data, error, isLoading } = useGetAllProductsQuery();
-    return ( 
+    console.log("Api", isLoading);
+    return (
         <h2>
-            oi
+            shop
         </h2>
-     );
+    );
 }
- 
+
 export default Shop;
