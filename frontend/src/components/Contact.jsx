@@ -69,11 +69,11 @@ const Contact = () => {
   return (
     
     
-    <div className='container px-5 py-5 lg:px-32 lg:pt-24  rounded-xl pb-20 mx-auto '>
+    <div className='container px-5 py-5 lg:px-32 lg:pt-24  rounded-xl pb-20 mx-auto  my-20'>
       <div id='contatos'
         className={`flex-[0.75] gradientecoral3 p-12 rounded-2xl`}
       >
-        <p className={styles.sectionHeadText}>Entre em contato 👾</p>
+        <p className={styles.sectionHeadText}>Entre em contato ☠︎︎</p>
         <h3 className={styles.sectionSubText}>Deixe sua sugestão.</h3>
 
         <form
@@ -89,7 +89,7 @@ const Contact = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="Digite seu nome."
-              className='gradientecoral4 py-4 px-6  rounded-lg outline-none border-none font-medium'
+              className='gradientecoral10 py-4 px-6  rounded-lg outline-none border-none font-medium'
             />
           </label>
           <label className='flex flex-col'>
@@ -100,7 +100,7 @@ const Contact = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="Digite seu email."
-              className='gradientecoral4 py-4 px-6  rounded-lg outline-none border-none font-medium'
+              className='gradientecoral10 py-4 px-6  rounded-lg outline-none border-none font-medium'
             />
           </label>
           <label className='flex flex-col'>
@@ -111,7 +111,7 @@ const Contact = () => {
               value={form.phone}
               onChange={handleChange}
               placeholder="Digite seu Telefone"
-              className='gradientecoral4 py-4 px-6  rounded-lg outline-none border-none font-medium'
+              className='gradientecoral10 py-4 px-6  rounded-lg outline-none border-none font-medium'
             />
           </label>
           <label className='flex flex-col'>
@@ -122,10 +122,10 @@ const Contact = () => {
               value={form.message}
               onChange={handleChange}
               placeholder='O que gostaria de dizer?'
-              className='gradientecoral4 py-4 px-6  rounded-lg outline-none border-none font-medium'
+              className='gradientecoral10 py-4 px-6  rounded-lg outline-none border-none font-medium'
             />
           </label>
-          <div className='gradientecoral4 w-fit rounded-xl'>
+          <div className='gradientecoral10 w-fit rounded-xl'>
             <button
               type='submit'
               className='py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md'

@@ -1,5 +1,9 @@
-const Login = () => {
-    return ( <h2>oi2</h2> );
+const Register = () => {
+    return ( <div className="h-screen top-30">
+
+
+ <h2>auhdofuihsodhfosjhdfkjshkdjfhskdjh</h2>
+    </div> );
 }
  
-export default Login;
+export default Register;

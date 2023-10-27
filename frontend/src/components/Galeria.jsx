@@ -3,7 +3,7 @@ import { imagen2, imagen3, imagen4, imagen5, imagen6, imagen7, } from "../assets
 
 const Galeria = () => {
   return (
-    <div id='Galeria' className="container my-32 mx-auto ">
+    <div id='Galeria' className="container my-20 mx-auto ">
       <div className=' text-center mx-4 justify-center content-center text-center'>
         <h2 className='gradientecor rounded  py-5 font-bold upeercase text-bold text-xl'>GALERIA</h2>
         <div className='border-b-2 text-center   justify-center content-center text-center text-bold text-xl upeercase '>CONFIRA AS FOTOS E VIDEOS DE NOSSOS EVENTOS!</div>

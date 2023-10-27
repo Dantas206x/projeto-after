@@ -1,37 +1,54 @@
 
   
   export const navLinks = [
+
     {
-      id: "News",
+      id: "/Novidades",
       title: "Novidades",
     },
   
     {
-      id: "loja",
+      id: "/Loja",
       title: "Loja",
     },
     {
-      id: "Galeria",
+      id: "/Galeria",
       title: "Galeria",
     },
     {
-      id: "contatos",
-      title: "Contato",
+      id: "/Contatos",
+      title: "Contatos",
     },
+ 
   
     
     
   ];
   export const navLinkss = [
     {
-      id: "Carrinho",
-      title: "Carrinho",
+      id: "/",
+      title: "Pagina inicial",
     },
     {
-      id: "Login",
-      title: "Login",
+      id: "/Novidades",
+      title: "Novidades",
     },
+  
+    {
+      id: "/Loja",
+      title: "Loja",
+    },
+    {
+      id: "/Galeria",
+      title: "Galeria",
+    },
+    {
+      id: "/Contatos",
+      title: "Contatos",
+    },
+  
   ]
+
   
   
   

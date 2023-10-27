@@ -1,5 +1,9 @@
 const Register = () => {
-    return ( <h2>oi3</h2> );
+    return ( <div className="h-screen top-30">
+
+
+ <h2>auhdofuihsodhfosjhdfkjshkdjfhskdjh</h2>
+    </div> );
 }
  
 export default Register;
