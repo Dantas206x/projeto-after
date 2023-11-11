@@ -10,6 +10,14 @@ router.post("/", async (req, res) => {
     name: Joi.string().min(3).max(30).required(),
     email: Joi.string().min(3).max(200).required().email(),
     password: Joi.string().min(6).max(200).required(),
+    cep: Joi.string().min(6).max(200).required(),
+    address: Joi.string().min(6).max(200).required(),
+    city: Joi.string().min(6).max(200).required(),
+    neighborhood: Joi.string().min(6).max(200).required(),
+    region: Joi.string().min(2).max(2).required(),
+    number: Joi.string().min(1).max(200).required(),
+    complement: Joi.string().min(6).max(200).required(),
+
   });
 
   const { error } = schema.validate(req.body);
@@ -21,9 +29,29 @@ router.post("/", async (req, res) => {
 
   console.log("here");
 
-  const { name, email, password } = req.body;
+  const { 
+    name, 
+    email, 
+    password,
+    cep,
+    address,
+    city,
+    neighborhood,
+    region,
+    number,
+    complement
 
-  user = new User({ name, email, password });
+  
+  
+  } = req.body;
+
+  user = new User({ name, email, password, cep,
+    address,
+    city,
+    neighborhood,
+    region,
+    number,
+    complement });
 
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
