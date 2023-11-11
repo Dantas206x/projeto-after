@@ -1,15 +1,40 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { styles } from "../styles";
-import {  navLinks, navLinkss } from "../constants";
-import { logo, menu, close, imagen8, imagen9 } from "../assets";
-import { useSelector } from "react-redux";
+import { navLinks } from "../constants";
+import { logo } from "../assets";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser } from "../features/authSlice";
+import styledd from "styled-components";
+import { clearCart } from "../features/cartSlice";
+import Badge from "@mui/material/Badge";
+import { styled } from "@mui/material/styles";
+import IconButton from "@mui/material/IconButton";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import PersonIcon from "@mui/icons-material/Person";
+import CloseIcon from "@mui/icons-material/Close";
+import MenuIcon from "@mui/icons-material/Menu";
+import ContactsIcon from "@mui/icons-material/Contacts";
+import CollectionsIcon from "@mui/icons-material/Collections";
+import StoreIcon from "@mui/icons-material/Store";
+import NewspaperIcon from "@mui/icons-material/Newspaper";
 
 const Navbar = () => {
   const { cartTotalQuantity } = useSelector((state) => state.cart);
+
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    dispatch(clearCart());
+    navigate("/login");
+  };
+
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
@@ -31,10 +56,10 @@ const Navbar = () => {
       className={`${
         styles.paddingX
       } w-full flex items-center py-1 max-[1024px]:py-7 fixed top-0 z-20 ${
-        scrolled ? "gradientecor" : "gradientecor"
+        scrolled ? "bg-neutral-800" : "bg-neutral-800"
       }`}
     >
-      <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
+      <div className="w-full flex justify-between items-center max-w-5xl mx-auto">
         <Link
           to="/"
           className="flex items-center gap-2"
@@ -46,11 +71,11 @@ const Navbar = () => {
           <img
             src={logo}
             alt="logo"
-            className=" w-160 h-20  max-[1024px]:hidden"
+            className="w-160 h-20 max-[1024px]:hidden"
           />
         </Link>
 
-        <ul className="list-none hidden sm:flex flex-row gap-10 ">
+        <ul className="list-none  sm flex flex-row gap-10  max-[700px]:hidden">
           {navLinks.map((nav) => (
             <li
               key={nav.id}
@@ -59,78 +84,126 @@ const Navbar = () => {
               } hover:text-stone-400 text-[18px] font-medium cursor-pointer`}
               onClick={() => setActive(nav.title)}
             >
-              <a href={`${nav.id}`}>{nav.title}</a>
+              <Link to={nav.id}>{nav.title}</Link>
             </li>
           ))}
         </ul>
 
-        <div className="flex estilo justify-self-end  items-center max-[1024px]:hidden">
-          <Link>
-            <div className="flex items-center m-2">
-              <img
-                src={toggle ? close : imagen8}
-                alt="imagen8"
-                width={20}
-                onClick={() => setToggle(!close)}
-              />
+        <div className="flex estilo justify-self-end items-center max-[700px]:hidden">
+          <div className="flex items-center m-2 relative">
+            <Link>
+              {toggle ? (
+                <CloseIcon onClick={() => setToggle(!toggle)} />
+              ) : (
+                <PersonIcon onClick={() => setToggle(!toggle)} />
+              )}
+            </Link>
+            <div
+              className={`${
+                !toggle ? "hidden" : "flex"
+              }  bg-neutral-800 rounded-bl-lg absolute top-[50px] p-10`}
+            >
+              {auth._id ? (
+                <Logout
+                  onClick={() => {
+                    handleLogout();
+                    toast.warning("Logged out!", { position: "bottom-left" });
+                    setToggle(!toggle);
+                  }}
+                >
+                  Logout
+                </Logout>
+              ) : (
+                <AuthLinks className="flex justify-end items-start flex-1 flex-col gap-5">
+                  <div>
+                    <Link to="/login" onClick={() => setToggle(!toggle)}>
+                      Login
+                    </Link>
+                  </div>
+                  <div>
+                    <Link to="/Registrar" onClick={() => setToggle(!toggle)}>
+                      Registrar
+                    </Link>
+                  </div>
+                </AuthLinks>
+              )}
             </div>
-          </Link>
-          <Link to="/Carrinho">
-            <div className="flex items-center m-2 hover:scale-110">
-              <img src={imagen9} width={20} />
-              <span className="bag-quantity gradientecoral22">
-                <span>{cartTotalQuantity}</span>
-              </span>
-            </div>
-          </Link>
+          </div>
+
+          <div>
+            <Link to="/Carrinho">
+              <IconButton aria-label="cart" style={{ color: "white" }}>
+                <StyledBadge badgeContent={cartTotalQuantity} color="secondary">
+                  <ShoppingCartIcon />
+                </StyledBadge>
+              </IconButton>
+            </Link>
+          </div>
         </div>
 
         <div className="sm:hidden flex flex-1 justify-end items-center">
-          <img
-            src={toggle ? close : menu}
-            alt="menu"
-            className="w-[28px] h-[28px] object-contain"
-            onClick={() => setToggle(!toggle)}
-          />
+          <Link>
+            {toggle ? (
+              <CloseIcon onClick={() => setToggle(!toggle)} />
+            ) : (
+              <MenuIcon onClick={() => setToggle(!toggle)} />
+            )}
+          </Link>
           <div
             className={`${
               !toggle ? "hidden" : "flex"
-            } glass absolute top-[84px] p-10 right-0 min-h-screen bo-stone-950 `}
+            } bg-neutral-800 absolute top-[80px] p-10 right-0 min-h-screen bo-stone-950 `}
           >
             <div>
               <div>
                 <ul className="list-none flex justify-end items-start flex-1 flex-col gap-10 ">
-                  {navLinkss.map((nav) => (
-                    <li
-                      key={nav.id}
-                      className={`font-poppins font-medium cursor-pointer text-[16px] hover:text-neutral-600 ${
-                        active === nav.title ? "text-black" : "text-white"
-                      }`}
-                      onClick={() => {
-                        setToggle(!toggle);
-                        setActive(nav.title);
-                      }}
+                  <Link to="/loja">
+                    <div
+                      className={`font-poppins font-medium cursor-pointer text-[16px] flex hover:text-neutral-600`}
                     >
-                      <a href={`${nav.id}`}>{nav.title}</a>
-                      
-                    </li>
-                  ))}
-                  
-                  <Link to="/Login">
-                      <div className={`font-poppins font-medium cursor-pointer text-[16px] flex hover:text-neutral-600`}><img src={imagen8} width={20}/>&nbsp;
-                      Perfil
-                      </div>
-                      
-                      
-                  
+                      <StoreIcon />
+                      &nbsp; Loja
+                    </div>
                   </Link>
                   <Link to="/Carrinho">
-                      <div className={`font-poppins font-medium cursor-pointer text-[16px] flex hover:text-neutral-600`}><img src={imagen9} width={20} />&nbsp;
-                      Carrinho
-                      </div>
-                      
-                      
-                  
+                    <div
+                      className={`font-poppins font-medium cursor-pointer text-[16px] flex hover:text-neutral-600`}
+                    >
+                      <ShoppingCartIcon />
+                      &nbsp; Carrinho
+                    </div>
+                  </Link>
+                  <Link to="/login">
+                    <div
+                      className={`font-poppins font-medium cursor-pointer text-[16px] flex hover:text-neutral-600`}
+                    >
+                      <PersonIcon />
+                      &nbsp; Perfil
+                    </div>
+                  </Link>
+                  <Link to="/Galeria">
+                    <div
+                      className={`font-poppins font-medium cursor-pointer text-[16px] flex hover:text-neutral-600`}
+                    >
+                      <CollectionsIcon />
+                      &nbsp; Galeria
+                    </div>
+                  </Link>
+                  <Link to="/loja">
+                    <div
+                      className={`font-poppins font-medium cursor-pointer text-[16px] flex hover:text-neutral-600`}
+                    >
+                      <NewspaperIcon />
+                      &nbsp; Novidades
+                    </div>
+                  </Link>
+                  <Link to="/Contatos">
+                    <div
+                      className={`font-poppins font-medium cursor-pointer text-[16px] flex hover:text-neutral-600`}
+                    >
+                      <ContactsIcon />
+                      &nbsp; Contatos
+                    </div>
                   </Link>
                 </ul>
               </div>
@@ -143,3 +216,23 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+const Logout = styledd.div`
+  color: white;
+  cursor: pointer;
+`;
+
+const AuthLinks = styledd.div`
+  a {
+    display: block;
+    margin-bottom: 10px;
+  }
+`;
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: "0 4px",
+  },
+}));

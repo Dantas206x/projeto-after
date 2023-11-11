@@ -11,8 +11,7 @@ import logo from "./logo.png";
 import menu from "./menu.svg";
 import mobile from "./mobile.png";
 import web from "./web.png";
-import imagen8 from "./imagen8.png";
-import imagen9 from "./imagen9.png";
+
 
 export {
     imagen1,
@@ -22,8 +21,7 @@ export {
     imagen5,
     imagen6,
     imagen7,
-    imagen8,
-    imagen9,
+    
     close,
     herobg,
     logo,

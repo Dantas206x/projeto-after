@@ -5,8 +5,8 @@ import { Pagination } from 'swiper/modules';
 
 const News = () => {
   return (
-
-    <div className='container mx-auto gradientecoral2 rounded-xl flex flex-col xl:flex-row items-center md:my-12 p-4 h-[1075px] xl:h-[600px] '>
+   
+    <div className='container mx-auto bg-neutral-400 shadow-xl rounded-xl flex flex-col xl:flex-row items-center md:my-12 p-4  py-12 h-[1075px] xl:h-[600px]  '>
       <div className='swiper mySwiper w-12/12 xl:w-5/12 swiper-initialized swiper-horizontal swiper-backface-hidden'>
         <Swiper
           slidesPerView={1}
@@ -19,7 +19,7 @@ const News = () => {
           modules={[Pagination]}
         >
           <SwiperSlide>
-            <div id='News' className='swiper-slide hero-event swiper-slide-active h-screen'>
+            <div id='News' className='swiper-slide hero-event swiper-slide-active h-screen '>
               <div className='max-w-[320px] md:max-w-[400px] xl:max-w-[450px] max-w-[320px] md:max-w-[400px] xl:max-w-[450px]'>
                 <div className='rounded-lg overflow-hidden shadow-lg'>
 
@@ -146,7 +146,7 @@ const News = () => {
         </Swiper>
       </div>
       <div className='w-12/12 xl:w-7/12 h-full md:h-[520px]'>
-        <p className='xl:ml-6 2xl:ml-24 mb-9 font-bold text-xl dark:text-white text-black text-left rounded gradientecor px-4 py-4 uppercase'>
+        <p className='xl:ml-6 2xl:ml-24 mb-9 font-bold text-xl dark:text-white text-black text-left rounded bg-neutral-800 shadow-xl px-4 py-4 uppercase'>
 
 
           {/* Confira os proximos eventos */}

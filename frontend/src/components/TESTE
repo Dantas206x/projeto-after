@@ -1,64 +1,91 @@
-<div className="  rounded-xl my-20 ">
-  <div className="m-2" id="shop">
-    {isLoading ? (
-      <p>Carregando</p>
-    ) : error ? (
-      <p>parece que algo deu errado</p>
-    ) : (
-      <>
-        <div className="home-title py-10">
-          <span className="mb-9 font-bold text-3xl  px-4 py-4 uppercase">
-            Loja
-          </span>
-        </div>
+<input
+            type="number"
+            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Celular"
+            {...register("phone")}
+            onChange={(e) => setUser({ ...user, phone: e.target.value })}
+          />
 
-        <div className="grid grid-cols-5 gap-5  max-lg:grid-cols-2 ">
-          {data?.map((product) => (
-            <div
-              key={product.id}
-              className="product hover:scale-110 font-bold text-black-200 text-base  object-contain"
-            >
-              <h3>{productsApi.name}</h3>
-              <a href={`${product.url}`}>
-                <img src={product.image} alt={product.name} className="product-image" />
-              </a>
-              <div className=" contentBox font-bold text-black-200 text-base mb-3">
-                <h3>{product.desc}</h3>
-                <h2 className=" price font-bold text-black-200 text-base mb-3">
-                  R${product.price}
-                </h2>
-                <button
-                  className="hover:scale-110 flex items-center"
-                  onClick={() => handleAddToCart(product)}
-                ><img src={imagen9} width={20} className=""/>
-                  &nbsp; adcionar
-                </button>
-                
+
+
+
+
+          <div>
+            <div class="bg-white">
+              <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+                <h2 class="text-2xl font-bold tracking-tight text-gray-900">Customers also purchased</h2>
+      
+                <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                  <div class="group relative">
+                    <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                      <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Front of men's Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                    </div>
+                    <div class="mt-4 flex justify-between">
+                      <div>
+                        <h3 class="text-sm text-gray-700">
+                          <a href="#">
+                            <span aria-hidden="true" class="absolute inset-0"></span>
+                            Basic Tee
+                          </a>
+                        </h3>
+                        <p class="mt-1 text-sm text-gray-500">Black</p>
+                      </div>
+                      <p class="text-sm font-medium text-gray-900">$35</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              
             </div>
-          ))}
-        </div>
-      </>
-    )}
-  </div>
-</div>
+          </div>
 
 
 
-<a href={`${product.url}`}>
 
-</a>
-<div className=" font-bold text-black-200 text-base mb-3">
-  <h3>{product.desc}</h3>
-  <h2 className=" price font-bold text-black-200 text-base mb-3">
-    R${product.price}
-  </h2>
-  <button
-    className="hover:scale-110 flex items-center"
-    onClick={() => handleAddToCart(product)}
-  ><img src={imagen9} width={20} className=""/>
-    &nbsp; adcionar
-  </button>
-  
-</div>
+
+          <div className=" ">
+            <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+              <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+                Mais vendidos
+              </h2>
+
+              <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                {data?.map((product) => (
+                  <div key={product.id} className="group relative">
+                    <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                      <a href={`/product/${product.id}`}>
+                        <img
+                          src={product?.image}
+                          alt={product?.name}
+                          className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                        />
+                      </a>
+                    </div>
+                    <div className="mt-4 flex justify-between">
+                      <div>
+                        <h3 className="text-sm text-gray-700">
+                          <a href="#">
+                            <span
+                              aria-hidden="true"
+                              className="absolute inset-0"
+                            ></span>
+                            {product.name}
+                          </a>
+                        </h3>
+                        <p className="mt-1 text-sm text-gray-500">Black</p>
+                      </div>
+                      <p className="text-sm font-medium text-gray-900">
+                        R${product.price}
+                      </p>
+                    </div>
+                    <button
+                      className="hover:scale-110 hover:bg-neutral-600 flex items-center"
+                      onClick={() => handleAddToCart(product)}
+                    >
+                      <img src={imagen9} width={20} />
+                      &nbsp; Adicionar
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>

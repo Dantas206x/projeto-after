@@ -2,8 +2,7 @@ import React from 'react'
 
 import emailjs from "@emailjs/browser";
 import { useRef, useState } from "react";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+
 import { styles } from '../styles';
 
 const Contact = () => {
@@ -69,77 +68,80 @@ const Contact = () => {
   return (
     
     
-    <div className='container px-5 py-5 lg:px-32 lg:pt-24  rounded-xl pb-20 mx-auto  my-20'>
-      <div id='contatos'
-        className={`flex-[0.75] gradientecoral3 p-12 rounded-2xl`}
-      >
-        <p className={styles.sectionHeadText}>Entre em contato ☠︎︎</p>
-        <h3 className={styles.sectionSubText}>Deixe sua sugestão.</h3>
+    <div className='px-5  py-5 max-w-5xl items-center justify-center flex mx-auto flex-col rounded-xl pb-20 my-20'>
+      <div id='contatos'>
+      <div className='bg-neutral-800 text-center p-5 rounded-t-lg'>
+          
+          <p className={styles.sectionHeadText}>Entre em contato ☠︎︎</p>
+          </div>
+      <div className='bg-neutral-400 p-2  rounded-b-lg'>
+        
+        
+        <h3 className="text-black ">E deixe sua sugestão.</h3>
 
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className='mt-12 flex flex-col gap-10'
+          className='mt-6 flex flex-col gap-4'
         >
           <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Seu nome</span>
+            <span className='text-black font-medium mb-4'>Seu nome</span>
             <input
               type='text'
               name='name'
               value={form.name}
               onChange={handleChange}
               placeholder="Digite seu nome."
-              className='gradientecoral10 py-4 px-6  rounded-lg outline-none border-none font-medium'
+              className='bg-neutral-200 p-6 text-black rounded-lg outline-none border-none font-medium'
             />
           </label>
           <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Seu email</span>
+            <span className='text-black font-medium mb-4'>Seu email</span>
             <input
               type='email'
               name='email'
               value={form.email}
               onChange={handleChange}
               placeholder="Digite seu email."
-              className='gradientecoral10 py-4 px-6  rounded-lg outline-none border-none font-medium'
+              className='bg-neutral-200 p-6 text-black rounded-lg outline-none border-none font-medium'
             />
           </label>
           <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Seu Telefone</span>
+            <span className='text-black font-medium mb-4'>Seu Telefone</span>
             <input
               type='number'
               name='phone'
               value={form.phone}
               onChange={handleChange}
               placeholder="Digite seu Telefone"
-              className='gradientecoral10 py-4 px-6  rounded-lg outline-none border-none font-medium'
+              className='bg-neutral-200 p-6 text-black rounded-lg outline-none border-none font-medium'
             />
           </label>
           <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Sua mensagem</span>
+            <span className='text-black font-medium mb-4'>Sua mensagem</span>
             <textarea
               rows={8}
               name='message'
               value={form.message}
               onChange={handleChange}
               placeholder='O que gostaria de dizer?'
-              className='gradientecoral10 py-4 px-6  rounded-lg outline-none border-none font-medium'
+              className='bg-neutral-200 p-6 text-black rounded-lg outline-none border-none font-medium'
             />
           </label>
-          <div className='gradientecoral10 w-fit rounded-xl'>
+          <div className='bg-neutral-200 w-fit rounded-xl'>
             <button
               type='submit'
-              className='py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md'
+              className='py-3 px-8 rounded-xl outline-none w-fit text-black font-bold shadow-md'
             >
               {loading ? "Enviando..." : "Enviar"}
             </button>
           </div>
         </form>
         <div>
-          <div>
-            
-          </div>
+       
         </div>
       </div>
+    </div>
     </div>
 
 
