@@ -13,6 +13,7 @@ import Sobre from "./components/Sobre";
 import Home from "./components/Home";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+
 import ProductDetailPage from "./components/ProductDetailPage.jsx";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";

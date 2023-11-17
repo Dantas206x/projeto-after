@@ -7,8 +7,8 @@ const initialState = {
   averageRating: 0, // Adicione a média de avaliações ao estado
 };
 
-export const productsFetch = createAsyncThunk(
-  "products/productsFetch",
+export const ProductFetch = createAsyncThunk(
+  "Product/ProductFetch",
   async () => {
     const response = await axios.get("http://localhost:5000/products");
     return response?.data;
@@ -16,10 +16,10 @@ export const productsFetch = createAsyncThunk(
 );
 
 export const fetchAverageRatingAsync = createAsyncThunk(
-    "products/fetchAverageRating",
+    "Product/fetchAverageRating",
     async (productId) => {
       try {
-        const response = await axios.get(`http://localhost:5000/products/${productId}/average-rating`);
+        const response = await axios.get(`http://localhost:5000/Product/${productId}/average-rating`);
         return response?.data.averageRating;
       } catch (error) {
         console.error("Error fetching average rating:", error);
@@ -29,21 +29,21 @@ export const fetchAverageRatingAsync = createAsyncThunk(
   );
 
   const productsSlice = createSlice({
-    name: "products",
+    name: "Product",
     initialState,
   
 
   
     extraReducers: (builder) => {
       builder
-        .addCase(productsFetch.pending, (state) => {
+        .addCase(ProductFetch.pending, (state) => {
           state.status = "pending";
         })
-        .addCase(productsFetch.fulfilled, (state, action) => {
+        .addCase(ProductFetch.fulfilled, (state, action) => {
           state.items = action.payload;
           state.status = "success";
         })
-        .addCase(productsFetch.rejected, (state) => {
+        .addCase(ProductFetch.rejected, (state) => {
           state.status = "rejected";
         })
         .addCase(fetchAverageRatingAsync.pending, (state) => {

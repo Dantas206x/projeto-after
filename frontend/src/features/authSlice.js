@@ -14,6 +14,7 @@ const initialState = {
   loginStatus: "",
   loginError: "",
   userLoaded: false,
+  isAdmin: false,
 };
 
 export const registerUser = createAsyncThunk(
@@ -80,7 +81,6 @@ export const getUser = createAsyncThunk(
   "auth/getUser",
   async (id, { rejectWithValue }) => {
     try {
-      console.log("Token:", localStorage.getItem("token"));
       const token = await axios.get(`${url}/user/${userId}`, setHeaders());
 
       localStorage.setItem("token", token.data);
@@ -99,35 +99,42 @@ const authSlice = createSlice({
   reducers: {
     loadUser(state, action) {
       const storedToken = localStorage.getItem("token");
-      console.log("Stored Token:", storedToken); // Adiciona esta linha
     
       if (storedToken) {
         try {
-          console.log("Type of Stored Token:", typeof storedToken);
-          console.log("Decoding Token...");
           const user = jwtDecode(storedToken);
-          console.log("Decoded User:", user);
+    
+          console.log("Token Decodificado:", user);
     
           if (!user._id || !user.name || !user.email) {
             console.error("Invalid user data in the decoded token.");
             console.error("Decoded User ID:", user._id);
             console.error("Decoded User Name:", user.name);
             console.error("Decoded User Email:", user.email);
-            return { ...state, userLoaded: true }; // Aborta o processo se os dados do usuário forem inválidos
+            return { ...state, userLoaded: true };
           }
     
-          console.log("Decoded Token:", storedToken);
-    
-          return {
+          // Atualize o estado, incluindo a informação sobre se o usuário é um administrador
+          const newState = {
             ...state,
             token: storedToken,
             name: user.name,
             email: user.email,
             _id: user._id,
+            isAdmin: user.isAdmin === true, // Defina como true apenas se for explicitamente verdadeiro
             userLoaded: true,
           };
+    
+          console.log("Novo Estado (isAdmin):", newState.isAdmin);
+    
+          // Adicione um console.log se o usuário for um administrador
+          if (newState.isAdmin) {
+            console.log("Usuário é um administrador!");
+          }
+    
+          return newState;
         } catch (error) {
-          if (error.name === 'InvalidTokenError') {
+          if (error.name === "InvalidTokenError") {
             console.error("Invalid token error:", error.message);
           } else {
             console.error("Error decoding token:", error);
@@ -160,7 +167,6 @@ const authSlice = createSlice({
     builder.addCase(registerUser.pending, (state, action) => {
       return { ...state, registerStatus: "pending" };
     });
-
 
     builder.addCase(getUser.rejected, (state, action) => {
       return {

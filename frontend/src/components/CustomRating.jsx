@@ -4,20 +4,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../features/authSlice";
 import axios from "axios";
 
-
-
-const averageRating = async (productId) => {
+const fetchAverageRating = async (productId) => {
   try {
-    const response = await axios.get(`http://localhost:5000/api/getRatings/${productId}`);
-    return response.data.averageRating || 0;
+    const response = await axios.get(
+      `http://localhost:5000/api/getRatings/${productId}`
+    );
+    const averageRating = response.data.averageRating || 0;
+    const totalRatings = response.data.totalRatings || 0;
+
+    return { averageRating, totalRatings };
   } catch (error) {
     console.error("Error fetching average rating:", error);
     throw error;
   }
 };
+
 const CustomRating = ({ productId, initialRating }) => {
   const [rating, setRating] = useState(initialRating);
   const [averageRating, setAverageRating] = useState(0);
+  const [totalRatings, setTotalRatings] = useState(0);
   const [userHasRated, setUserHasRated] = useState(false);
   const [canRate, setCanRate] = useState(true);
 
@@ -25,6 +30,22 @@ const CustomRating = ({ productId, initialRating }) => {
   const userId = useSelector((state) => state.auth._id);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { averageRating, totalRatings } = await fetchAverageRating(
+          productId
+        );
+        setAverageRating(averageRating);
+        setTotalRatings(totalRatings);
+      } catch (error) {
+        console.error("Error fetching ratings:", error);
+      }
+    };
+
+    fetchData();
+  }, [productId]);
 
   useEffect(() => {
     if (userId) {
@@ -39,21 +60,26 @@ const CustomRating = ({ productId, initialRating }) => {
   }, [productId, user && user.userLoaded]);
 
   useEffect(() => {
-    const fetchAverageRating = async () => {
+    const fetchAverage = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/getRatings/${productId}`);
-        setAverageRating(response.data.averageRating || 0);
+        const { averageRating, totalRatings } = await fetchAverageRating(
+          productId
+        );
+        setAverageRating(averageRating);
+        setTotalRatings(totalRatings);
       } catch (error) {
         console.error("Error fetching average rating:", error);
       }
     };
 
-    // Chama a função para buscar a média de avaliações quando o componente é montado
-    fetchAverageRating();
+    fetchAverage();
   }, [productId]);
+
   const fetchRatingData = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/getRatings/${productId}`);
+      const response = await axios.get(
+        `http://localhost:5000/api/getRatings/${productId}`
+      );
       setAverageRating(response.data.averageRating || 0);
     } catch (error) {
       console.error("Error fetching average rating:", error);
@@ -61,9 +87,9 @@ const CustomRating = ({ productId, initialRating }) => {
   };
 
   useEffect(() => {
-    // Fetch rating data when the component mounts
     fetchRatingData();
   }, [productId]);
+
   const checkUserRating = async () => {
     try {
       if (userId) {
@@ -88,37 +114,33 @@ const CustomRating = ({ productId, initialRating }) => {
         return;
       }
 
-      const response = await axios.post("http://localhost:5000/api/saveRating", {
-        productId,
-        userId,
-        rating: newValue,
-      });
+      const response = await axios.post(
+        "http://localhost:5000/api/saveRating",
+        {
+          productId,
+          userId,
+          rating: newValue,
+        }
+      );
 
       console.log("Rating sent successfully:", response.data);
-      fetchRatingData(); // Atualiza a média de avaliações após a nova avaliação
+      fetchRatingData();
     } catch (error) {
       console.error("Error sending rating to the backend:", error.message);
     }
   };
-  
-
   return (
-    <div className="flex items-center">
-  <Rating
-    name="combined-rating"
-    value={userHasRated ? rating : averageRating}
-    precision={0.1}
-    onChange={handleRatingChange}
-    disabled={!canRate}
-  />
-  <p className="text-black ml-2">
-    {userHasRated}
-  </p>
-</div>
+    <div className="flex flex-col items-center">
+      <Rating
+        name="combined-rating"
+        value={userHasRated ? rating : averageRating}
+        precision={0.1}
+        onChange={handleRatingChange}
+        disabled={!canRate}
+      />
+      <p className="text-neutral-500 ">({totalRatings} avaliações)</p>
+    </div>
   );
 };
 
 export default CustomRating;
-
-
-export { averageRating };

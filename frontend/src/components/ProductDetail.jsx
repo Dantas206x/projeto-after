@@ -4,13 +4,32 @@ import { useDispatch } from "react-redux";
 import { addToCartS } from "../features/cartSlice";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Rproducts from "../../../backend/Rproducts";
 import { Pagination, Navigation } from "swiper/modules";
 import CustomRating from "./CustomRating";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useGetAllProductsQuery } from "../features/productsApi";
+import memoize from "memoize-one";
 
+const shuffleArray = memoize((array) => {
+  const shuffledArray = [...array];
+  const selectedProducts = [];
+
+  // Shuffle the array
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+
+  // Select the first 4 products
+  for (let i = 0; i < Math.min(4, shuffledArray.length); i++) {
+    selectedProducts.push(shuffledArray[i]);
+  }
+
+  return selectedProducts;
+});
 const ProductDetail = ({ product }) => {
   const dispatch = useDispatch();
+  const [totalRatings, setTotalRatings] = useState(0);
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
   const [images, setImages] = useState(1);
@@ -32,19 +51,33 @@ const ProductDetail = ({ product }) => {
     setQuantity(newQuantity);
   };
 
-  const shuffleArray = (array) => {
-    const shuffledArray = [...array];
-    for (let i = shuffledArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledArray[i], shuffledArray[j]] = [
-        shuffledArray[j],
-        shuffledArray[i],
-      ];
-    }
-    return shuffledArray;
-  };
+  const { data: products = [], error, isLoading } = useGetAllProductsQuery();
 
-  
+  useEffect(() => {
+    if (isLoading) {
+      console.log("Carregando produtos...");
+    }
+
+    if (error) {
+      console.error("Erro ao carregar produtos:", error);
+    }
+  }, [isLoading, error]);
+
+  if (isLoading) {
+    return <p>Carregando...</p>;
+  }
+
+  if (error) {
+    return (
+      <p>
+        Ocorreu um erro ao carregar os produtos. Por favor, tente novamente mais
+        tarde.
+      </p>
+    );
+  }
+
+  // Se chegou aqui, a consulta foi bem-sucedida, e você pode prosseguir com a renderização
+  const selectedProducts = shuffleArray(products).slice(0, 4);
 
   return (
     <div className="min-h-screen py-20">
@@ -95,9 +128,9 @@ const ProductDetail = ({ product }) => {
               {product.name}
             </h2>
             <p className="text-black text-sm">
-              fubs{" "}
+              by{" "}
               <a href="#" className="text-black hover:underline">
-                Fubecas
+              {product.autor}
               </a>
             </p>
 
@@ -112,7 +145,7 @@ const ProductDetail = ({ product }) => {
               </div>
               <div className="flex-1 rounded-lg">
                 <p className=" text-red text-xl font-semibold">
-                  Economize 202%
+                  {product.disc}%
                 </p>
                 <p className="  text-black text-sm">Incluindo as taxas.</p>
               </div>
@@ -159,63 +192,78 @@ const ProductDetail = ({ product }) => {
                     className="h-14 px-6 py-2 font-semibold rounded-xl  hover:bg-zinc-700 text-white"
                     onClick={handleAddToCart}
                   >
-                    Adicionar ao <ShoppingCartIcon/>
+                    Adicionar ao <ShoppingCartIcon />
                   </button>
                 </Link>
               </div>
-              <div>
-              <CustomRating
+              <div className=" text-center">
+                <CustomRating
                   productId={id}
                   initialRating={product.ratings ? product.ratings[0] : 0}
                 />
+                <p className="text-black"></p>
               </div>
             </div>
           </div>
         </div>
-      </div>
+        <div className="py-20 rounded-lg  ">
+          <div className="font-bold text-2xl text-gray-800 mb-6 text-center">
+            Produtos recomendados
+          </div>
+          <div className="flex justify-center p-5  bg-neutral-400 rounded-lg shadow-lg ">
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={8}
+              loop={true}
+              pagination={{
+                clickable: true,
+              }}
+              breakpoints={{
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                },
+                768: {
+                  slidesPerView: 4,
+                  spaceBetween: 40,
+                },
+                1024: {
+                  slidesPerView: 4,
+                  spaceBetween: 50,
+                },
+              }}
+              modules={[Pagination, Navigation]}
+            >
+              {selectedProducts.map((product, index) => (
+                <SwiperSlide key={index}>
+                  <div className="w-64 bg-white p-3 border rounded-lg shadow-lg transition-transform transform hover:scale-105 aspect-w-1 aspect-h-1">
+                    <a href={`/product/${product.id}`}>
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-full object-cover rounded-md mb-2"
+                      />
+                    </a>
 
-      <div className="py-20">
-        <div className="font-bold text-2xl text-gray-800 border-b border-gray-300 mb-6 text-center">
-          Produtos recomendados
+                    <h3 className="text-black text-lg font-semibold mt-2">
+                      <a
+                        href={`/product/${product.id}`}
+                        className="hover:underline"
+                      >
+                        {product.name}
+                      </a>
+                    </h3>
+                    <p className="text-gray-700 mt-1">
+                      Preço: R$ {product.price.toFixed(2)}{" "}
+                      {/* Arredonda o preço para 2 casas decimais */}
+                    </p>
+                    {/* Adicione outros detalhes do produto aqui */}
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
-        <Swiper
-          slidesPerView={1}
-          spaceBetween={8}
-          loop={true}
-          pagination={{
-            clickable: true,
-          }}
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            768: {
-              slidesPerView: 4,
-              spaceBetween: 40,
-            },
-            1024: {
-              slidesPerView: 5,
-              spaceBetween: 50,
-            },
-          }}
-          modules={[Pagination, Navigation]}
-        >
-          {shuffleArray(Rproducts).map((product, index) => (
-            <SwiperSlide key={index}>
-              <div className="w-64 bg-white p-4 border rounded-lg shadow-lg">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-40 object-cover rounded-md"
-                />
-                <h3 className="text-lg font-semibold mt-2">{product.name}</h3>
-                <p className="text-gray-700 mt-2">Preço: R$ {product.price}</p>
-                {/* Adicione outros detalhes do produto aqui */}
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
       </div>
     </div>
   );

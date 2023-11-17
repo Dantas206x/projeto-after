@@ -7,7 +7,7 @@ import "./index.css";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 
-import productsReducer, { productsFetch } from "./features/productsSlice";
+import productsReducer, { ProductFetch } from "./features/productsSlice";
 import cartReducer, { getTotals } from "./features/cartSlice";
 import authReducer from "./features/authSlice";
 import { productsApi } from "./features/productsApi";
@@ -23,7 +23,7 @@ const store = configureStore({
     getDefaultMiddleware().concat(productsApi.middleware),
 });
 
-store.dispatch(productsFetch());
+store.dispatch(ProductFetch());
 store.dispatch(getTotals());
 
 
