@@ -1,12 +1,14 @@
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser")
 const mongoose = require("mongoose");
 const register = require("./routes/register");
 const login = require("./routes/login");
 
-const products = require("./products");
+
 const Rating = require("./models/Rating");
 const User = require("./models/user");
+const Product = require ("./models/Product")
 
 const app = express();
 
@@ -14,6 +16,7 @@ require("dotenv").config();
 
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/api/register", register);
 app.use("/api/login", login);
@@ -23,10 +26,55 @@ app.get("/", (req, res) => {
   res.send("Welcome to our online shop API...");
 });
 
-app.get("/products", (req, res) => {
-  console.log("Received GET request at /products");
-  res.send(products);
+app.get("/products", async (req, res) => {
+  try {
+    console.log("Received GET request at /products");
+
+    // Encontre todos os produtos no banco de dados MongoDB
+    const products = await Product.find();
+
+    // Responda com a lista de produtos
+    res.json(products);
+  } catch (error) {
+    console.error("Error fetching products:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
+
+
+app.post("/api/addProduct", async (req, res) => {
+  try {
+    console.log("Received POST request at /api/addProduct");
+    // Extrair dados do corpo da solicitação
+    const { id, name, desc, price, cdesc, disc, image, images, autor } = req.body;
+
+    // Crie um novo objeto de produto usando o schema
+    const newProduct = new Product({
+      id,
+      name,
+      desc,
+      price,
+      disc,
+      autor,
+      cdesc,
+      image,
+      images,
+    });
+
+    // Salve o novo produto no banco de dados MongoDB
+    await newProduct.save();
+
+    console.log("Product added successfully");
+
+    // Responda com uma mensagem de sucesso
+    res.json({ message: "Product added successfully" });
+  } catch (error) {
+    console.error("Error adding product:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
 
 app.post("/api/saveRating", async (req, res) => {
   try {
@@ -88,12 +136,20 @@ app.get("/api/getRatings/:productId", async (req, res) => {
   try {
     const productId = req.params.productId;
 
-    // Lógica para obter avaliações médias do banco de dados
-    const averageRating = await calculateAverageRating(productId);
+    // Lógica para obter avaliações do banco de dados
+    const ratings = await Rating.find({ productId });
+    const totalRatings = ratings.length;
 
-    res.json({ averageRating });
+    if (totalRatings === 0) {
+      return res.json({ averageRating: 0, totalRatings: 0 });
+    }
+
+    const sumRatings = ratings.reduce((total, rating) => total + rating.rating, 0);
+    const averageRating = sumRatings / totalRatings;
+
+    res.json({ averageRating, totalRatings });
   } catch (error) {
-    console.error("Error fetching average rating:", error.message);
+    console.error("Error fetching ratings:", error.message);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });

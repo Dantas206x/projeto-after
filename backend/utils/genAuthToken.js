@@ -17,6 +17,7 @@ const genAuthToken = (user) => {
       region: user.region,
       number: user.number,
       complement: user.complement,
+      isAdmin: user.isAdmin
     },
     jwtSecretKey
   );

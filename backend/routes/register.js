@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const { User } = require("../models/user");
 const Joi = require("joi");
 const express = require("express");
-const  genAuthToken = require("../utils/genAuthToken");
+const genAuthToken = require("../utils/genAuthToken");
 const router = express.Router();
 
 router.post("/", async (req, res) => {
@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
     region: Joi.string().min(2).max(2).required(),
     number: Joi.string().min(1).max(200).required(),
     complement: Joi.string().min(6).max(200).required(),
-
+    isAdmin: Joi.boolean().default(false), 
   });
 
   const { error } = schema.validate(req.body);
@@ -29,9 +29,9 @@ router.post("/", async (req, res) => {
 
   console.log("here");
 
-  const { 
-    name, 
-    email, 
+  const {
+    name,
+    email,
     password,
     cep,
     address,
@@ -39,19 +39,23 @@ router.post("/", async (req, res) => {
     neighborhood,
     region,
     number,
-    complement
-
-  
-  
+    complement,
+    isAdmin,
   } = req.body;
 
-  user = new User({ name, email, password, cep,
+  user = new User({
+    name,
+    email,
+    password,
+    cep,
     address,
     city,
     neighborhood,
     region,
     number,
-    complement });
+    complement,
+    isAdmin, 
+  });
 
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);

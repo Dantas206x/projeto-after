@@ -68,7 +68,7 @@ const products = [
     cdesc: "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo",
     price: 80,
     image:
-      "https://th.bing.com/th/id/OIP.0Fmp39Oi21Jy6QVKaliSUwHaHx?pid=ImgDet&rs=1",
+      "https://i.etsystatic.com/16540450/r/il/f65964/1863163275/il_1588xN.1863163275_ri04.jpg",
     images: [
       "https://th.bing.com/th/id/OIP.0Fmp39Oi21Jy6QVKaliSUwHaHx?pid=ImgDet&rs=1",
       "https://http2.mlstatic.com/camiseta-lacoste-live-masculina-original-polo-camiseta-aj-D_NQ_NP_945711-MLB20615948353_032016-F.jpg",
@@ -116,7 +116,7 @@ const products = [
     price: 80,
     cdesc: "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo",
     image:
-      "https://th.bing.com/th/id/OIP.klC1DHBaEHWKjq4-tlksOgDlEs?pid=ImgDet&rs=1",
+      "https://images-na.ssl-images-amazon.com/images/I/71j-QiEUtHL._AC_UL1500_.jpg",
     images: [
       "https://th.bing.com/th/id/OIP.klC1DHBaEHWKjq4-tlksOgDlEs?pid=ImgDet&rs=1",
       "https://http2.mlstatic.com/camiseta-lacoste-live-masculina-original-polo-camiseta-aj-D_NQ_NP_945711-MLB20615948353_032016-F.jpg",
@@ -164,7 +164,7 @@ const products = [
     price: 80,
     cdesc: "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo",
     image:
-      "https://http2.mlstatic.com/kit-c30-camisetas-de-marcas-r-28000-cada-unidade-r-933-D_NQ_NP_859711-MLB20644135796_032016-F.jpg",
+      "https://www.silcastudio.com/622-large_default/camiseta-unisex-punk-rock.jpg",
     images: [
       "https://http2.mlstatic.com/kit-c30-camisetas-de-marcas-r-28000-cada-unidade-r-933-D_NQ_NP_859711-MLB20644135796_032016-F.jpg",
       "https://http2.mlstatic.com/camiseta-lacoste-live-masculina-original-polo-camiseta-aj-D_NQ_NP_945711-MLB20615948353_032016-F.jpg",
@@ -236,7 +236,7 @@ const products = [
     price: 80,
     cdesc: "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo",
     image:
-      "https://th.bing.com/th/id/OIP.1q2hRANlZfaMINs2ljSx_QHaF-?pid=ImgDet&rs=1",
+      "https://i5.walmartimages.com/asr/dbb92e14-52d5-4003-85bc-6075a0a92bf1.1c6dfec92275dd8a57b3559b052c3ded.jpeg",
     images: [
       "https://th.bing.com/th/id/OIP.1q2hRANlZfaMINs2ljSx_QHaF-?pid=ImgDet&rs=1",
       "https://http2.mlstatic.com/camiseta-lacoste-live-masculina-original-polo-camiseta-aj-D_NQ_NP_945711-MLB20615948353_032016-F.jpg",
@@ -260,7 +260,7 @@ const products = [
     price: 80,
     cdesc: "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo",
     image:
-      "https://th.bing.com/th/id/OIP.1q2hRANlZfaMINs2ljSx_QHaF-?pid=ImgDet&rs=1",
+      "https://i5.walmartimages.com/asr/dbb92e14-52d5-4003-85bc-6075a0a92bf1.1c6dfec92275dd8a57b3559b052c3ded.jpeg",
     images: [
       "https://th.bing.com/th/id/OIP.1q2hRANlZfaMINs2ljSx_QHaF-?pid=ImgDet&rs=1",
       "https://http2.mlstatic.com/camiseta-lacoste-live-masculina-original-polo-camiseta-aj-D_NQ_NP_945711-MLB20615948353_032016-F.jpg",
@@ -308,7 +308,7 @@ const products = [
     price: 80,
     cdesc: "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo",
     image:
-      "https://th.bing.com/th/id/OIP.1q2hRANlZfaMINs2ljSx_QHaF-?pid=ImgDet&rs=1",
+      "https://i5.walmartimages.com/asr/dbb92e14-52d5-4003-85bc-6075a0a92bf1.1c6dfec92275dd8a57b3559b052c3ded.jpeg",
     images: [
       "https://th.bing.com/th/id/OIP.1q2hRANlZfaMINs2ljSx_QHaF-?pid=ImgDet&rs=1",
       "https://http2.mlstatic.com/camiseta-lacoste-live-masculina-original-polo-camiseta-aj-D_NQ_NP_945711-MLB20615948353_032016-F.jpg",
@@ -332,7 +332,7 @@ const products = [
     price: 80,
     cdesc: "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo",
     image:
-      "https://th.bing.com/th/id/OIP.1q2hRANlZfaMINs2ljSx_QHaF-?pid=ImgDet&rs=1",
+      "https://i5.walmartimages.com/asr/dbb92e14-52d5-4003-85bc-6075a0a92bf1.1c6dfec92275dd8a57b3559b052c3ded.jpeg",
     images: [
       "https://th.bing.com/th/id/OIP.1q2hRANlZfaMINs2ljSx_QHaF-?pid=ImgDet&rs=1",
       "https://http2.mlstatic.com/camiseta-lacoste-live-masculina-original-polo-camiseta-aj-D_NQ_NP_945711-MLB20615948353_032016-F.jpg",
@@ -356,7 +356,7 @@ const products = [
     price: 80,
     cdesc: "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo",
     image:
-      "https://th.bing.com/th/id/OIP.1q2hRANlZfaMINs2ljSx_QHaF-?pid=ImgDet&rs=1",
+      "https://i5.walmartimages.com/asr/dbb92e14-52d5-4003-85bc-6075a0a92bf1.1c6dfec92275dd8a57b3559b052c3ded.jpeg",
     images: [
       "https://th.bing.com/th/id/OIP.1q2hRANlZfaMINs2ljSx_QHaF-?pid=ImgDet&rs=1",
       "https://http2.mlstatic.com/camiseta-lacoste-live-masculina-original-polo-camiseta-aj-D_NQ_NP_945711-MLB20615948353_032016-F.jpg",

@@ -19,6 +19,11 @@ const userSchema = new mongoose.Schema({
   region: { type: String, minlength: 2, maxlength: 1024 },
   number: { type: String, minlength: 1, maxlength: 1024 },
   complement: { type: String, minlength: 3, maxlength: 1024 },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
+  
 });
 
 // You don't need to define the findById method explicitly; Mongoose already provides it.

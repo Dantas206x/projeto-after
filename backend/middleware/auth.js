@@ -14,9 +14,14 @@ function auth(req, res, next) {
     const jwtSecretKey = process.env.TODO_APP_JWT_SECRET_KEY;
     const decoded = jwt.verify(token, jwtSecretKey);
     console.log("Decoded Token:", decoded);
-    
-    req.user = decoded;
-    next();
+
+    if (decoded && decoded.isAdmin) {
+      req.user = decoded;
+      next();
+    } else {
+      console.log("Access denied. Admin rights required...");
+      res.status(403).send("Access denied. Admin rights required...");
+    }
   } catch (ex) {
     console.log("Invalid auth token:", ex);
     res.status(400).send("Invalid auth token...");
