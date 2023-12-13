@@ -1,0 +1,1 @@
+Desenvolvi um site full-stack no universo pop-punk chamado After-Midnight,incluindo recursos como venda de ingressos, produtos e integração com MongoDB para validação de usuários e processamento de pagamentos via API. Destaco a ênfase na responsividade para ampliar o alcance do público, demonstrando minha habilidade em solucionar desafios complexos.
